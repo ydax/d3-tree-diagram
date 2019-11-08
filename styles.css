@@ -1,0 +1,16 @@
+body{
+    background: #cccccc;
+}
+text{
+    font-family: Calibri;
+    font-size: 22px;
+}
+h2, .flow-text{
+    margin: 0 0 10px;
+}
+.modal{
+    max-width: 500px;
+}
+.canvas{
+    margin-top: 40px;
+}
