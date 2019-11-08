@@ -101,8 +101,16 @@ const data = [{
     },
 ];
 
+// create the svg canvas
+const svg = d3.select('.canvas')
+    .append('svg')
+    .attr('width', 1060)
+    .attr('height', 800);
+
+// create the graph group
+const graph = svg.append('g')
+    .attr('transform', 'translate(50, 50)'); // give it a 50px margin
+
 const stratify = d3.stratify()
     .id(d => d.name)
     .parentId(d => d.parent);
-
-console.log(stratify(data));
