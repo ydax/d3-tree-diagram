@@ -18,11 +18,18 @@ const stratify = d3.stratify()
 const tree = d3.tree()
     .size([dims.width, dims.height]);
 
+// create an ordinal scale
+const color = d3.scaleOrdinal(['#3399ff', '#3366ff', '#0033cc', '#000099']);
+
 // update function
 const update = (data) => {
+    
     // remove current nodes
     graph.selectAll('.node').remove();
     graph.selectAll('.link').remove();
+
+    //update the ordinal scale
+    color.domain(data.map(item => item.department));
     
     // store data in stratified format in rootNode
     const rootNode = stratify(data);
@@ -63,15 +70,15 @@ const update = (data) => {
     
     // append rects to enter nodes
     enterNodes.append('rect')
-        .attr('fill', '#000099')
+        .attr('fill', d => color(d.data.department))
         .attr('stroke', '#ff3366')
         .attr('stroke-width', 2)
         .attr('height', 50)
-        .attr('width', d => { d.data.name.length * 20 })
+        .attr('width', d => d.data.name.length * 20 )
         //           ^-- dynamically generate width based on length of name
         .attr('transform', d => {
             let xShift = d.data.name.length * 10;
-            return `translate(${-xShift}, -25)`;
+            return `translate(${-xShift}, -25)`
         });
     
     // append text to the rectangles
