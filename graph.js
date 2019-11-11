@@ -7,7 +7,7 @@ const svg = d3.select('.canvas')
     .attr('height', dims.height + 100);
 
 const graph = svg.append('g')
-    .attr('transform', 'translate(50, 50)');
+    .attr('transform', 'translate(-100, 50)');
 
 // setup a data stratification function 
 const stratify = d3.stratify()
